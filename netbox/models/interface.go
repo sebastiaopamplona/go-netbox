@@ -55,7 +55,12 @@ type Interface struct {
 	// Return the appropriate serializer for the type of connected object.
 	//
 	// Read Only: true
-	ConnectedEndpoints []*string `json:"connected_endpoints"`
+
+	// NOTE(SP) Commenting this field is the reason for the fork.
+	// The upstream has a bug https://github.com/netbox-community/go-netbox/issues/151.
+	// When the bug is fixed in the upstream, we can drop the fork.
+
+	//ConnectedEndpoints []*string `json:"connected_endpoints"`
 
 	// Connected endpoints reachable
 	// Read Only: true
@@ -124,7 +129,12 @@ type Interface struct {
 	// Return the appropriate serializer for the link termination model.
 	//
 	// Read Only: true
-	LinkPeers []*string `json:"link_peers"`
+
+	// NOTE(SP) Commenting this field is the reason for the fork.
+	// The upstream has a bug https://github.com/netbox-community/go-netbox/issues/151.
+	// When the bug is fixed in the upstream, we can drop the fork.
+
+	//LinkPeers []*string `json:"link_peers"`
 
 	// Link peers type
 	// Read Only: true
@@ -1144,9 +1154,13 @@ func (m *Interface) contextValidateCableEnd(ctx context.Context, formats strfmt.
 
 func (m *Interface) contextValidateConnectedEndpoints(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "connected_endpoints", "body", []*string(m.ConnectedEndpoints)); err != nil {
-		return err
-	}
+	// NOTE(SP) Commenting this field is the reason for the fork.
+	// The upstream has a bug https://github.com/netbox-community/go-netbox/issues/151.
+	// When the bug is fixed in the upstream, we can drop the fork.
+
+	//if err := validate.ReadOnly(ctx, "connected_endpoints", "body", []*string(m.ConnectedEndpoints)); err != nil {
+	//	return err
+	//}
 
 	return nil
 }
@@ -1289,9 +1303,12 @@ func (m *Interface) contextValidateLastUpdated(ctx context.Context, formats strf
 
 func (m *Interface) contextValidateLinkPeers(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "link_peers", "body", []*string(m.LinkPeers)); err != nil {
-		return err
-	}
+	// NOTE(SP) Commenting this field is the reason for the fork.
+	// The upstream has a bug https://github.com/netbox-community/go-netbox/issues/151.
+	// When the bug is fixed in the upstream, we can drop the fork.
+	//if err := validate.ReadOnly(ctx, "link_peers", "body", []*string(m.LinkPeers)); err != nil {
+	//	return err
+	//}
 
 	return nil
 }
