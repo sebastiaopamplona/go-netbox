@@ -31,6 +31,11 @@ import (
 	"github.com/go-openapi/validate"
 )
 
+type GenericDevice struct {
+	*Cable
+	Device *Device
+}
+
 // Interface interface
 //
 // swagger:model Interface
@@ -56,11 +61,9 @@ type Interface struct {
 	//
 	// Read Only: true
 
-	// NOTE(SP) Commenting this field is the reason for the fork.
 	// The upstream has a bug https://github.com/netbox-community/go-netbox/issues/151.
 	// When the bug is fixed in the upstream, we can drop the fork.
-
-	//ConnectedEndpoints []*string `json:"connected_endpoints"`
+	ConnectedEndpoints []*GenericDevice `json:"connected_endpoints"`
 
 	// Connected endpoints reachable
 	// Read Only: true
@@ -130,11 +133,10 @@ type Interface struct {
 	//
 	// Read Only: true
 
-	// NOTE(SP) Commenting this field is the reason for the fork.
 	// The upstream has a bug https://github.com/netbox-community/go-netbox/issues/151.
 	// When the bug is fixed in the upstream, we can drop the fork.
 
-	//LinkPeers []*string `json:"link_peers"`
+	LinkPeers []*GenericDevice `json:"link_peers"`
 
 	// Link peers type
 	// Read Only: true
