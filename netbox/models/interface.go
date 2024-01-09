@@ -31,8 +31,13 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-type GenericDevice struct {
-	*Cable
+// NOTE(SP) this is a hotfix for https://github.com/netbox-community/go-netbox/issues/151
+type InterfaceConnection struct {
+	ID int64 `json:"id,omitempty"`
+	URL strfmt.URI `json:"url,omitempty"`
+	Display string `json:"display,omitempty"`
+	Name string `json:"name,omitempty"`
+	Cable string `json:"cable,omitempty"`
 	Device *Device
 }
 
@@ -63,7 +68,7 @@ type Interface struct {
 
 	// The upstream has a bug https://github.com/netbox-community/go-netbox/issues/151.
 	// When the bug is fixed in the upstream, we can drop the fork.
-	ConnectedEndpoints []*GenericDevice `json:"connected_endpoints"`
+	ConnectedEndpoints []*InterfaceConnection `json:"connected_endpoints"`
 
 	// Connected endpoints reachable
 	// Read Only: true
@@ -136,7 +141,7 @@ type Interface struct {
 	// The upstream has a bug https://github.com/netbox-community/go-netbox/issues/151.
 	// When the bug is fixed in the upstream, we can drop the fork.
 
-	LinkPeers []*GenericDevice `json:"link_peers"`
+	LinkPeers []*InterfaceConnection `json:"link_peers"`
 
 	// Link peers type
 	// Read Only: true
